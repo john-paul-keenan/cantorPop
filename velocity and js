@@ -1,0 +1,57 @@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script type="text/javascript">
+    var shadow = $('<div id="shadowElem"></div>');
+    var speed = 1000;
+    $(document).ready(function() {
+        $('body').prepend(shadow);
+    });
+    $(window).load( function() {
+        screenHeight = $(window).height();
+        screenWidth = $(window).width();
+        elemWidth = $('#dropElem').outerWidth(true);
+        elemHeight = $('#dropElem').outerHeight(true)
+         
+        leftPosition = (screenWidth / 2) - (elemWidth / 2);
+        topPosition = (screenHeight / 2) - (elemHeight / 2);
+         
+        $('#dropElem').css({
+            'left' : leftPosition + 'px',
+            'top' : -elemHeight + 'px'
+        });
+        $('#dropElem').show().animate({
+            'top' : topPosition
+        }, speed);
+         
+        shadow.animate({
+            'opacity' : 0.7
+        }, speed);
+         
+        $('#dropClose').click( function() {
+            shadow.animate({
+                'opacity' : 0
+            }, speed);
+            $('#dropElem').animate({
+            'top' : -elemHeight + 'px'
+        }, speed, function() {
+                shadow.remove();
+                $(this).remove();
+            });
+             
+        });
+    });
+     
+     
+     
+</script>
+
+
+##This is where I set the text for the popup, and the box
+<div id="dropElem" style='width: 80%;'>
+        <div id="dropContent">
+            <div id="dropClose">Close</div>
+                $cms.getContent(10773121)
+                #set($popText = $content.popText)
+            <p>$!popText</p>
+        </div>
+    </div>
+
